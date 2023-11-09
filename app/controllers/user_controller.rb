@@ -1,5 +1,7 @@
 class UserController < ApplicationController
-    # skip_before_action :authorized, only: [:create]
+    
+    # skip_before_action :verify_authenticity_token
+    # before_action :user_detail, only: [:user_detail]
     rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
     def new
         @user = User.new
@@ -11,32 +13,48 @@ class UserController < ApplicationController
        render json: @show
     end
 
+    def verify_authenticity_token
+    end
+
+
+    # def index
+    #     @data_per_page = 10
+    #     @page = params.fetch(:page,0).to_i
+    #     puts "page = #{@page}"
+    #     puts "DPP = #{@data_per_page}"
+    #     @data = User.offset(@page * @data_per_page).limit(@data_per_page)
+    # end
+    def index
+      page = params[:page].to_i || 1
+      per_page = 10
+      offset = (page - 1) * per_page
+      user = User.limit(per_page).offset(offset)
+  
+      if user.any?
+        render json: { data: user}
+      end
+    end
+  
+
+    def encode_token
+    end
+
     def create 
         @user = User.new(user_params)
         if @user.save
             token = encode_token(user_id: @user.id)
         else
-            flash[:rgister_error] = @user.errors.full_messages
+            # flash[:register_error] = @user.errors.full_messages
             redirect_to '/'
         end
     end
 
-    def user2
-        user_id = params[:id]
-        requested_user = User.find_by(id: user_id)
-
-        if requested_user
-            if current_user.id == requested_user
-                redirect_to '/user'
-            else
-                flash[:usr_error] = @user.errors.full_messages
-                redirect_to '/'
-            end
-        else
-            render json: {error: 'user not found'}, status: 400
-        end
+    def not_found
+        render json: { error: 'not_found' }
     end
-
+    
+    def authorize_request
+    end
 
     private
 
@@ -48,12 +66,5 @@ class UserController < ApplicationController
             render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
-    def current_user
-        token = session[:user_token]
-        if token.present?
-            user_info = JsonWebToken.decode(token)
-            user_id = decoded_token[0]['user_id']
-            @current_user ||= User.find_by(id: user_id)
-        end
-    end
+
 end
