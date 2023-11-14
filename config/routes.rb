@@ -21,4 +21,20 @@ Rails.application.routes.draw do
 
   get '/user/index/:page', to: 'user#index'
 
+  get '/password', to: 'user#show'
+
+  get 'password/reset', to: 'password_reset#new'
+  post 'password/reset', to: 'password_reset#create'
+  get 'password/reset/edit', to: 'password_reset#edit'
+  patch 'password/reset/edit', to: 'password_reset#update'
+
+  get '/reset', to: 'passwordmailer#reset'
+
+  get '/upload', to: 'uploadimg#new'
+  post '/upload', to: 'uploadimg#create'
+
+  get '/uploaded', to: 'uploadimg#show'
+
+  resources :uploadimg, only: [:new, :create]
+  get '/uploaded_images/:filename', to: 'uploadimg#show', as: :uploaded_image
 end

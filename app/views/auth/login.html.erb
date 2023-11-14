@@ -1,10 +1,34 @@
-<h1>Log-in<h1>
-<%= form_tag "/login" do %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log In</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <input type= "name", name= "name", placeholder= "Name">
-    <input type= "password", name="password", placeholder="password">
+   <style>
+    input{
+        height:30px;
+        width: 200px;
+        font-size: 20px;
+    }
+   </style>
+  </head>
+
+  <body style="background-color:#ccf0dc">
+  <h1 style="text-align:center">Log-in<h1>
+
+  <div style="margin:auto; width:25%; padding 10px; background-color: #7fafad; padding:15px; height:40vh">
+  <%= form_tag "/login" do %>
   
-    <input type="submit" value="submit" name="submit"><br>
-
+      <input type= "name", name= "name", placeholder= "Name"></br></br>
+      <input type= "password", name="password", placeholder="password"></br></br>
     
-<% end %>
+      <input type="submit" value="submit" name="submit" class="btn btn-primary"><br>
+  
+  <% end %>
+  <%= link_to "forgot password?", password_reset_path %>
+  </div>
+  </body>
+</html>
+
+
+

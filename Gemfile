@@ -12,6 +12,7 @@ gem 'active_model_serializers', '~> 0.10.12'
 
 gem 'will_paginate', '~> 3.1.0'
 
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.1"
 
