@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   # get '/index/:page', to: 'user#index'
 
   get '/user/index/:page', to: 'user#index'
+  # config/routes.rb
+
 
   get '/password', to: 'user#show'
 

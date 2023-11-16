@@ -24,7 +24,7 @@ class AuthController < ApplicationController
         if @current_user
             if current_user.id == @requested_user.id
                 @requested_user.destroy
-                redirect_to user_path
+                redirect_to '/'
             else
                 redirect_to login_path
             end

@@ -16,14 +16,15 @@ class UserController < ApplicationController
 
     def verify_authenticity_token
     end
+
     def index
-      page = params[:page].to_i || 1
       per_page = 10
+      page = params[:page].to_i || 1
       offset = (page - 1) * per_page
-      user = User.limit(per_page).offset(offset)
+      @user = User.limit(per_page).offset(offset)
   
-      if user.any?
-        render json: { data: user}
+      if @user.any?
+        redirect_to  user_index_path(page: 0)
       end
     end
 
@@ -39,9 +40,8 @@ class UserController < ApplicationController
 
     def create 
         @user = User.new(user_params)
-        puts " user = #{@user}"
         if @user.save
-            token = encode_token(user_id: @user.id)
+            token = encode_token()
             redirect_to login_path
         else
             puts "Validation errors: #{@user.errors.full_messages}"
@@ -49,9 +49,9 @@ class UserController < ApplicationController
         end
     end
 
-    def not_found
-        render json: { error: 'not_found' }
-    end
+    # def not_found
+    #     render json: { error: 'not_found' }
+    # end
     
     def authorize_request
     end
@@ -63,7 +63,7 @@ class UserController < ApplicationController
     end
 
     def handle_invalid_record(e)
-            render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 

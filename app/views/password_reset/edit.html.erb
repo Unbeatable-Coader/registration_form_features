@@ -1,12 +1,35 @@
-<h1>Reset Your Password</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reset Your Password</title>
+    
+    <style>
+    input{
+        float: right
+    }
+    label{
+        font-weight: 700;
+        font-size: 25px;
+    }
+    </style>
+  </head>
 
-<%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |f| %>
+  <body style="background-color:#7676e9">
+  <%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |f| %>
+
+    <h1 style= "text-align:center; margin: 50px 0 50px 0; font-size: 50px">Reset Your Password</h1>
+    <div  style="margin:auto; width:30%; padding 10px; background-color: #c4a5f52e; padding:15px; height:35vh"><br>
     <%= f.label :password %>
-    <%= f.password_field :password %><br><br>
+    <%= f.password_field :password %><br><br><br>
     
     <%= f.label :Confirm_Password %>
     <%= f.password_field :password_confirmation %><br><br>
   
 
     <%= f.submit "Reset password" %>
-<% end %>
+    </div>
+  <% end %>
+  </body>
+</html>
+
+
