@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <style>
+    # .btn{
+    #     background-color: blue;
+    # }
+    input{
+        float: right
+    }
+    label{
+        font-weight: 700;
+        font-size: 22px;
+    }
+    .lnk{
+        text-decoration: none;
+    }
+    </style>
+  </head>
+
+  <body style="background-color: #ca7e7e">
+  <h1 style= "text-align: center; margin: 50px 0 50px 0; font-size:50px">Registration Form</h1>
+  <div style="margin:auto; width:30%; padding 10px; background-color: #b87a7a; padding:15px">
+  <%= form_for @user, url: user_path(@user), method: :post do |f| %>
+  
+  
+  
+      <%= f.label :name %>
+      <%= f.text_field :name %><br><br><br>
+  
+      <%= f.label :email %>
+      <%= f.email_field :email %><br><br><br>
+  
+      <%= f.label :password %>
+      <%= f.password_field :password %><br><br><br>
+      
+      <%= f.label :Confirm_Password %>
+      <%= f.password_field :password_confirmation %><br><br>
+    
+      <%= link_to "Upload Img", upload_path %></br></br>
+      <%= f.submit "Sign Up" %>
+
+    
+      <%= link_to "log-in", login_path %>
+      
+  <% end %>
+  </div>
+  </body>
+</html>
+
+

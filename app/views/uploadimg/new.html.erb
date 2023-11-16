@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+
+    <style>
+        label{
+            color:#ffff;
+            font-size: 25px;
+        }
+        input{
+            margin-top: 30px;
+            size: 30px;
+        }
+        button{
+            font-weight:700;
+        }
+        form{
+            padding-top:100px;
+        }
+        # .btn{
+        #     margin-top: 250px;
+        # }
+    </style>
+</head>
+<body style="margin-top:30px; background-color:#8171f0">
+<h1 style="text-align: center; font-size: 40px">Upload Documents</h1>
+<div style="margin:auto; width:25%;height: 70vh;border-radius:10px; padding 10px; background-color: blue; padding:15px">
+    
+   <center><img src="/assets/file2.png" alt="Description of the image" style="margin-top: 35px"></center>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+
+        <label for="image">Select an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit" class="btn">Upload</button>
+    </form>
+</div>
+</body>
+</html>

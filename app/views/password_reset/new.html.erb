@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forgot Password</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <style>
+    label{
+        font-size:38px;
+        margin-right: 20px;
+        font-weight: 700;
+    }
+    input{
+        height: 20px;
+        widht: 280px
+        font-size: 20px;
+    }
+    </style>
+  </head>
+
+  <body style="background-color:#f38787">
+  <h1 style="text-align:center; margin-top:30vh; font-size: 40px">Forgot Your Password</h1>
+<div style="margin:auto; width:35%; height:70px; background-color: #da4954ba; padding:15px; box-sizing:border-box">
+  <%= form_with url: password_reset_path do |f| %>
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "youremail@gmail.com" %>
+  
+      <%= f.submit "Reset password" %>
+</div>
+  <% end %>
+  </body>
+</html>
+

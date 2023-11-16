@@ -1,0 +1,6 @@
+<h1>Hello, requested_user<h1>
+<% if flash[:register_error] %>
+<% flash[:usr_error].each do |e| %>
+<%= e %>
+<% end %>
+<% end %>

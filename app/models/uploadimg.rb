@@ -1,0 +1,2 @@
+class Uploadimg < ApplicationRecord
+end

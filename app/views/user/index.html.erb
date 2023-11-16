@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<div class="row">
+  <% @user.each do |u| %>
+    <p>Name: <%= u.name %>, Email: <%= u.email %></p>
+  <% end %>
+</div>
+
+<%= link_to "Next Page"%>
